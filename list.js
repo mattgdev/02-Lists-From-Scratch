@@ -7,15 +7,18 @@ const List = module.exports = class {
 
   push(...args) {
     for (let i = 0; i < args.length; i++) {
-      this[this.length] = args;
+      this[this.length] = args[i];
       this.length += 1;
     }
     return this.length;
   }
 
-  forEach(callback){
-    if( typeof callback !== 'function'){
-      
+  forEach(callback) {
+    if (typeof callback !== 'function') {
+      throw new Error('Expected a function');
+    }
+    if (!this.length) {
+      throw new Error('Empty');
     }
   }
 
@@ -32,6 +35,20 @@ const List = module.exports = class {
     }
     return results;
   }
+
+  filter(callback) {
+    if (typeof callback !== 'function') {
+      throw new Error('Expected a function');
+    }
+    let results = new List();
+    for (let i = 0; i < this.length; i++) {
+      if (callback(this[i], i)) {
+        results.push(this[i]);
+      }
+    }
+    console.log(results);
+    return results;
+  }
   
   reduce(func, state) {
     if (!this.length) {
@@ -42,6 +59,8 @@ const List = module.exports = class {
       for (let i = 0; i < this.length; i++) {
       state = func(state, this[i], i);
       }
+    }
     return state;
   }
 };
+
