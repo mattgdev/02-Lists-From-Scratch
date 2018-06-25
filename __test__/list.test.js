@@ -27,7 +27,7 @@ describe('testing functionality', () => {
     expect(testList.push(1, 2, 3, 4)).toEqual(9);
   });
 
-  testList = 2;
+  // testList = 2;
 
   test('map:checks for an empty list', () => {
     const newList = new List();
@@ -35,10 +35,11 @@ describe('testing functionality', () => {
       newList.map(event => event);
     }).toThrow();
   });
-  testList = 0;
+  // testList = 0;
 });
 
-testList = 1;
+// testList = 1;
+
 
 
 test('map:tests for a function input', () => {
